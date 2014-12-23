@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Respoke
@@ -19,18 +20,22 @@ namespace Respoke
 			baseUrl = customBaseUrl;
 		}
 
-		public RespokeResponse Request (string path, string meth, object JsonData) {
+		public RespokeResponse Request (RespokeRequestParams parms) {
 			Stream dataStream = null;
 			RespokeResponse resObject = new RespokeResponse();
 			HttpWebResponse response = null;
 
-			WebRequest req = WebRequest.Create(baseUrl + path);
-			req.Method = meth;
+			WebRequest req = WebRequest.Create(baseUrl + parms.path);
+			req.Method = parms.method;
 			req.ContentType = "application/json";
 			((HttpWebRequest)req).UserAgent = "Respoke .NET Client";
 
-			if (JsonData != null) {
-				byte[] byteArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(JsonData));
+			if (parms.appSecret != null) {
+				req.Headers.Add("App-Secret: " + parms.appSecret);
+			}
+
+			if (parms.body != null) {
+				byte[] byteArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(parms.body));
 				req.ContentLength = byteArray.Length;
 				dataStream = req.GetRequestStream();
 				dataStream.Write(byteArray, 0, byteArray.Length);
@@ -53,7 +58,7 @@ namespace Respoke
 			// Read the content.
 			string responseFromServer = reader.ReadToEnd();
 			// Display the content.
-			resObject.body = JsonConvert.DeserializeObject (responseFromServer);
+			resObject.body = JsonConvert.DeserializeObject<RespokeResponseJson>(responseFromServer);
 			resObject.statusCode = (int)response.StatusCode;
 			// Clean up the streams.
 			reader.Close();
@@ -64,13 +69,60 @@ namespace Respoke
 			return resObject;
 		}
 
-//		public string GetEndpointTokenId (string appId, string appSecret, string endpointId) {
-//			
-//		}
+		public RespokeResponse GetEndpointTokenId (RespokeEndpointTokenRequestParams parms) {
+			Dictionary<string, object> body = new Dictionary<string, object>();
+			body.Add("appId", parms.appId);
+			body.Add("endpointId", parms.endpointId);
+			body.Add ("ttl", parms.ttl);
+
+			if (parms.roleId != null) {
+				body.Add ("roleId", parms.roleId);
+			}
+			if (parms.roleName != null) {
+				body.Add ("roleName", parms.roleName);
+			}
+
+			return Request(new RespokeRequestParams() {
+				body = body,
+				method = "POST",
+				path = "/tokens",
+				appSecret = parms.appSecret
+			});
+		}
+	}
+
+	public class RespokeRequestParams {
+		public Dictionary<string, object> body = null;
+		public string path = null;
+		public string method = "GET";
+		public string appSecret = null;
+	}
+
+	public class RespokeEndpointTokenRequestParams {
+		public string appId = null;
+		public string appSecret = null;
+		public string endpointId = null;
+		public int ttl = 86000;
+		public string roleId = null;
+		public string roleName = null;
+	}
+
+	public class RespokeResponseJson {
+		public string tokenId;
+		public string appId;
+		public string endpointId;
+		public string roleId;
+		public string accountId;
+		public int createTime;
+		public int expiryTime;
+		public string id;
+		public bool forDevelopment;
+		public DateTime createdAt;
+		public string[] errors;
 	}
 
 	public class RespokeResponse {
-		public object body;
+		public RespokeResponseJson body;
 		public int statusCode;
 		public bool threwException = false;
 	}

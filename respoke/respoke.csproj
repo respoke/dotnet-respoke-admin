@@ -29,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -39,6 +42,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Folder Include="Packages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Packages\.DS_Store" />
+    <None Include="Packages\repositories.config" />
+    <None Include="Packages\NUnit.2.6.3\NUnit.2.6.3.nupkg" />
+    <None Include="Packages\NUnit.2.6.3\license.txt" />
+    <None Include="Packages\NUnit.2.6.3\lib\nunit.framework.dll" />
+    <None Include="Packages\NUnit.2.6.3\lib\nunit.framework.xml" />
     <None Include="packages.config" />
   </ItemGroup>
 </Project>
