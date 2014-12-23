@@ -41,6 +41,7 @@
     <Compile Include="RespokeClient.cs" />
     <Compile Include="RespokeResponse.cs" />
     <Compile Include="RespokeEndpointTokenRequestBody.cs" />
+    <Compile Include="RespokeRequestParams.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

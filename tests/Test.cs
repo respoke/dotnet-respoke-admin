@@ -12,7 +12,7 @@ namespace RespokeTests
 		{
 			RespokeClient respoke = new RespokeClient();
 			RespokeResponse resp = respoke.Request(new RespokeRequestParams{
-				path = "/"
+				Path = "/"
 			});
 			Assert.AreEqual(404, resp.statusCode);
 			Assert.NotNull(resp.body);

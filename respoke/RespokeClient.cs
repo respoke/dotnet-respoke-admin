@@ -9,14 +9,10 @@ using Respoke;
 namespace Respoke {
 	public class RespokeClient {
 
-		public string baseUrl;
+		public string BaseUrl { get; set; }
 
 		public RespokeClient () {
-			baseUrl = "https://api.respoke.io/v1";
-		}
-
-		public RespokeClient(string customBaseUrl) {
-			baseUrl = customBaseUrl;
+			BaseUrl = "https://api.respoke.io/v1";
 		}
 
 		public RespokeResponse Request (RespokeRequestParams parms) {
@@ -24,17 +20,17 @@ namespace Respoke {
 			RespokeResponse resObject = new RespokeResponse();
 			HttpWebResponse response = null;
 
-			WebRequest req = WebRequest.Create(baseUrl + parms.path);
-			req.Method = parms.method;
+			WebRequest req = WebRequest.Create(BaseUrl + parms.Path);
+			req.Method = parms.Method;
 			req.ContentType = "application/json";
 			((HttpWebRequest)req).UserAgent = "Respoke .NET Client";
 
-			if (parms.appSecret != null) {
-				req.Headers.Add("App-Secret: " + parms.appSecret);
+			if (parms.AppSecret != null) {
+				req.Headers.Add("App-Secret: " + parms.AppSecret);
 			}
 
-			if (parms.body != null) {
-				byte[] byteArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(parms.body));
+			if (parms.Body != null) {
+				byte[] byteArray = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(parms.Body));
 				req.ContentLength = byteArray.Length;
 				dataStream = req.GetRequestStream();
 				dataStream.Write(byteArray, 0, byteArray.Length);
@@ -82,19 +78,12 @@ namespace Respoke {
 			}
 
 			return Request(new RespokeRequestParams() {
-				body = body,
-				method = "POST",
-				path = "/tokens",
-				appSecret = parms.appSecret
+				Body = body,
+				Method = "POST",
+				Path = "/tokens",
+				AppSecret = parms.appSecret
 			});
 		}
-	}
-
-	public class RespokeRequestParams {
-		public Dictionary<string, object> body = null;
-		public string path = null;
-		public string method = "GET";
-		public string appSecret = null;
 	}
 		
 }
