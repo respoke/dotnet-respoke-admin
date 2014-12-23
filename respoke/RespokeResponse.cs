@@ -14,6 +14,7 @@ namespace Respoke
 		public bool forDevelopment;
 		public DateTime createdAt;
 		public string[] errors;
+		public string error;
 	}
 
 	public class RespokeResponse {
