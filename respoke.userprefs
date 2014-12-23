@@ -1,0 +1,29 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="tests/Test.cs">
+    <Files>
+      <File FileName="respoke/respoke.cs" Line="24" Column="24" />
+      <File FileName="tests/Test.cs" Line="19" Column="19" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True">
+          <Node name="tests" expanded="True">
+            <Node name="RespokeTests" expanded="True">
+              <Node name="HttpTests" expanded="True">
+                <Node name="EndpointToken" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/jeffparrish/Projects/respoke/tests/Test.cs" line="14" column="1" />
+      <Breakpoint file="/Users/jeffparrish/Projects/respoke/tests/Test.cs" line="14" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
