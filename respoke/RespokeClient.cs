@@ -4,19 +4,18 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Respoke;
 
-namespace Respoke
-{
-	public class Http
-	{
+namespace Respoke {
+	public class RespokeClient {
+
 		public string baseUrl;
 
-		public Http ()
-		{
+		public RespokeClient () {
 			baseUrl = "https://api.respoke.io/v1";
 		}
 
-		public Http (string customBaseUrl) {
+		public RespokeClient(string customBaseUrl) {
 			baseUrl = customBaseUrl;
 		}
 
@@ -69,7 +68,7 @@ namespace Respoke
 			return resObject;
 		}
 
-		public RespokeResponse GetEndpointTokenId (RespokeEndpointTokenRequestParams parms) {
+		public RespokeResponse GetEndpointTokenId (RespokeEndpointTokenRequestBody parms) {
 			Dictionary<string, object> body = new Dictionary<string, object>();
 			body.Add("appId", parms.appId);
 			body.Add("endpointId", parms.endpointId);
@@ -96,35 +95,6 @@ namespace Respoke
 		public string path = null;
 		public string method = "GET";
 		public string appSecret = null;
-	}
-
-	public class RespokeEndpointTokenRequestParams {
-		public string appId = null;
-		public string appSecret = null;
-		public string endpointId = null;
-		public int ttl = 86000;
-		public string roleId = null;
-		public string roleName = null;
-	}
-
-	public class RespokeResponseJson {
-		public string tokenId;
-		public string appId;
-		public string endpointId;
-		public string roleId;
-		public string accountId;
-		public int createTime;
-		public int expiryTime;
-		public string id;
-		public bool forDevelopment;
-		public DateTime createdAt;
-		public string[] errors;
-	}
-
-	public class RespokeResponse {
-		public RespokeResponseJson body;
-		public int statusCode;
-		public bool threwException = false;
 	}
 		
 }

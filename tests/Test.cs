@@ -10,7 +10,7 @@ namespace RespokeTests
 		[Test ()]
 		public void GetSlash ()
 		{
-			Respoke.Http respoke = new Respoke.Http();
+			RespokeClient respoke = new RespokeClient();
 			RespokeResponse resp = respoke.Request(new RespokeRequestParams{
 				path = "/"
 			});
@@ -22,8 +22,8 @@ namespace RespokeTests
 		[Test ()]
 		public void EndpointToken ()
 		{
-			Respoke.Http respoke = new Respoke.Http();
-			RespokeEndpointTokenRequestParams reqParams = new RespokeEndpointTokenRequestParams () {
+			RespokeClient respoke = new RespokeClient();
+			RespokeEndpointTokenRequestBody reqParams = new RespokeEndpointTokenRequestBody () {
 				appId = "391095be-6e83-40e3-90a5-439809ad2396",
 				appSecret = "7e34caf2-1814-4e11-a8fd-7796b8c787a1",
 				endpointId = "myendpoint123",
