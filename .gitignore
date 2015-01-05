@@ -20,8 +20,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 Packages/
-# allow distribution of the respoke library
-!respoke/[Bb]in/Release/respoke.dll
 
 # Roslyn cache directories
 *.ide/
@@ -186,3 +184,7 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+
+# allow distribution of the respoke library
+!respoke/[Bb]in/Release/respoke.dll
