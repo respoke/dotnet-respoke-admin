@@ -1,6 +1,10 @@
 # Respoke C# / .NET library
 
-An early library for building .NET server apps using Respoke. Please send a PR or request features you need.
+This is an early library for building .NET server apps using Respoke.
+
+Respoke platform documentation can be viewed at https://docs.respoke.io.
+
+Please GitHub to [report bugs or request features](https://github.com/respoke/dotnet-respoke-admin/issues), or start a discussion on the [Respoke community website](http://community.respoke.io).
 
 ## Usage
 
