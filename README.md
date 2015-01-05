@@ -13,10 +13,10 @@ using Respoke;
 
 RespokeClient respoke = new RespokeClient();
 RespokeEndpointTokenRequestBody reqParams = new RespokeEndpointTokenRequestBody () {
-    appId = "391095be-6e83-40e3-90a5-439809ad2396",
-    appSecret = "7e34caf2-1814-4e11-a8fd-7796b8c787a1",
-    endpointId = "myendpoint123",
-    roleId = "35D43FE7-CDE8-4DE0-BA5F-BC6A29DCF13A"
+    appId = "get-from-respoke-dev-console",
+    appSecret = "get-from-respoke-dev-console",
+    endpointId = "your-clients-username",
+    roleId = "get-from-respoke-dev-console"
 };
 RespokeResponse resp = respoke.GetEndpointTokenId(reqParams);
 
