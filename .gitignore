@@ -9,17 +9,17 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
 x64/
 x86/
 build/
 bld/
-[Bb]in/
+respoke/bin/Debug/
+respoke/bin/Release/*
+tests/bin/
 [Oo]bj/
 Packages/
+# allow distribution of the respoke library
+!respoke/bin/Release/respoke.dll
 
 # Roslyn cache directories
 *.ide/
@@ -184,7 +184,3 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
-
-
-# allow distribution of the respoke library
-!respoke/[Bb]in/Release/respoke.dll
