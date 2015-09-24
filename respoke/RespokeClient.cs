@@ -2,12 +2,19 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Reflection;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Respoke;
 
 namespace Respoke {
 	public class RespokeClient {
+		private string GetSDKHeader() {
+			string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+			string os = Environment.OSVersion.ToString();
+			string clrVersion = Environment.Version.ToString();
+			return "Respoke-.NET/" + version + " (" + os + ") .NET-CLR/" + clrVersion;
+		}
 
 		public string BaseUrl { get; set; }
 
@@ -23,7 +30,7 @@ namespace Respoke {
 			WebRequest req = WebRequest.Create(BaseUrl + parms.Path);
 			req.Method = parms.Method;
 			req.ContentType = "application/json";
-			((HttpWebRequest)req).UserAgent = "Respoke .NET Client";
+			req.Headers.Add("Respoke-SDK: " + GetSDKHeader());
 
 			if (parms.AppSecret != null) {
 				req.Headers.Add("App-Secret: " + parms.AppSecret);
